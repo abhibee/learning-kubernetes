@@ -1,0 +1,86 @@
+#Pods
+kubectl create -f pod-depoloyment.yml
+kubectl get pods
+kubectl describe pod <PodName>
+kubectl delete deployment <PodName>
+
+
+#ReplicationControllers
+kubectl create -f rc-deployment.yml
+kubectl get replicationcontroller
+
+#edit replicaset
+kubectl get pod <pod-name> -o yaml > pod-definition.yaml
+kubectl get replcaset 
+kubectl edit pod <pod-name>
+kubectl edit replicaset <name>
+
+
+#Deployments
+kubectl create -f deployment-definition.yaml
+kubectl get deployments
+kubectl get replicaset
+kubectl get pods
+
+kubectl get all
+
+#
+Use the below set of commands and try the previous practice test again, but this time try to use the below commands instead of YAML files.
+
+Create an NGINX Pod
+kubectl run --generator=run-pod/v1 nginx --image=nginx
+
+Generate POD Manifest YAML file (-o yaml). Don't create it(--dry-run)
+kubectl run --generator=run-pod/v1 nginx --image=nginx --dry-run -o yaml
+
+Create a deployment
+kubectl run --generator=deployment/v1beta1 nginx --image=nginx
+
+Generate Deployment YAML file (-o yaml). Don't create it(--dry-run)
+kubectl run --generator=deployment/v1beta1 nginx --image=nginx --dry-run -o yaml
+
+Generate Deployment YAML file (-o yaml). Don't create it(--dry-run) with 4 Replicas (--replicas=4)
+kubectl run --generator=deployment/v1beta1 nginx --image=nginx --dry-run --replicas=4 -o yaml
+
+Save it to a file - (If you need to modify or add some other details)
+kubectl run --generator=deployment/v1beta1 nginx --image=nginx --dry-run --replicas=4 -o yaml > nginx-deployment.yaml
+
+Reference:
+https://kubernetes.io/docs/reference/kubectl/conventions/
+
+#Namespaces
+kubectl create namespace namespace-1
+kubectl config set-config $(kubectl config current-context) --namespace=dev
+kubectl get pods --all-namespaces
+
+# Commands, Arguments and entrypoints in docker
+docker run ubuntu
+docker ps
+docker ps -a
+docker build -t ubuntu-sleeper .
+
+
+#Create configmap 
+kubectl create configmap \
+	appconfig \
+	--from-literal=APP_COLOR=BLUE\
+	--from-literal=APP_SECONDARY_COLOR=RED
+	
+kubectl create configmap \
+	appconfig \
+	--from-file=application.properties
+
+kubectl create -f 
+
+#Create secret
+kubectl create secret generic <secretname> \
+	--from literal=DB_PASS=ABCDE\
+	--from literal=DB_USER=GHDKWI
+
+kubectl create secret generic <secretname> \
+	--from-file=abc-definition.properties
+	
+#To Base64 encode and unencode something use
+echo -n "literal" | base64
+echo -n "literal" | base64 --decode
+

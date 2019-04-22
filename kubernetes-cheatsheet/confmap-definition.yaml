@@ -1,0 +1,7 @@
+apiVersion: 1.0
+kind: ConfirMap
+metadata:
+   name: app-config
+data:
+ - APP_COLOR: BLUE
+   APP_ENV: DEV

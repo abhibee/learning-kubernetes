@@ -1,0 +1,17 @@
+kind: Pod
+metadata:
+  creationTimestamp: 2019-04-13T06:35:26Z
+  labels:
+    name: webapp-color
+  name: webapp-color
+  namespace: default
+  resourceVersion: "1879"
+  selfLink: /api/v1/namespaces/default/pods/webapp-color
+  uid: 5290d4ca-5db6-11e9-90e1-0242ac110014
+spec:
+  containers:
+  - envFrom:
+    - configMapRef:
+       name: webapp-config-map
+    image: kodekloud/webapp-color
+    name: webapp-color
